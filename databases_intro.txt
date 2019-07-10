@@ -1,0 +1,76 @@
+1.
+	1. "A Clockwork Orange"		-- STRING
+	2. 42						-- INTEGER
+	3. 09/02/1945				-- DATE
+	4. 98.7						-- FLOAT
+	5. $15.99					-- CURRENCY
+
+2.
+  As databases store data in a binary file format that is intelligible by humans, you would use a text file whenever your data needs to be read by humans.  Databases should be utilized when storing large amounts of data that will be frequently modified.
+
+3.
+ A difference between SQL and other programming languages is that SQL is declarative instead of procedural.  SQL does not rely on an explicit set of instructions for how something must be done, just what actually needs to be done.
+
+4.
+ Databases use a table structure to hold data.  Data is held in individual cells; the cells form horizontal rows and vertical columns.  Columns should be the same type of data; each row is an individual unit.  A budget spreadsheet is the easiest way to visualize this - each row would represent a particular expense; one column should contain strings of WHAT the expense is, another float for the amount of the expense.  
+
+5.
+ Table - collection of data made up of rows and columns that are made up of cells.
+ Row - a complete conceptual unit made up of cells
+ Column - one data type, one cell holding data for each row
+ Value - data held within cells.
+
+6.
+ Tables can be made up of a number of data types, including strings, integers, and date.
+
+7. Given this payments table, provide an English description of the following queries and include their results:
+
+
+ SELECT date, amount
+     FROM payments;
+
+     SELECT amount
+     FROM payments
+     WHERE amount > 500;
+
+     SELECT *
+     FROM payments
+     WHERE payee = 'Mega Foods';
+
+
+First query - show all payment amounts and dates.
+	Results:
+	5/1/2016	1500.00
+	5/10/2016	37.00
+	5/15/2016	124.93
+	5/23/2016	54.72
+
+Second query - show amount of payments greater than $500
+	Result:
+	1500.00
+
+Third query - show all info for payments to Mega Foods
+	Result:
+	5/15/2016	Mega Foods	124.93	Groceries
+
+8.
+ a. SELECT email, signup
+	FROM users
+	WHERE name = 'DeAndre Data'
+
+	Result:
+	datad@comcast.net	2008-01-20
+
+b. 	SELECT userid
+	FROM users
+	WHERE email = 'aleesia.algorithm@uw.edu'
+
+	Result:
+	1	
+
+c. 	SELECT *
+	FROM users
+	WHERE userid = 4
+
+	Result:
+	4	Brandy Boolean	bboolean@nasa.gov	1999-10-15
