@@ -1,0 +1,100 @@
+1. Write out a generic SELECT statement
+	SELECT *
+    FROM genericTable
+
+2. Create a fun way to remember the order of operations in a SELECT statement, such as a mnemonic.
+	SELECT					= STUDENTS who know the order of operations 		
+	FROM					= FIND
+	WHERE					= WORK
+
+3. 
+  a. Display the name, gender, and age of all dogs that are part Labrador.
+  b. Display the ids of all dogs that are under 1 year old.
+  c. Display the name and age of all dogs that are female and over 35lbs.
+  d. Display all of the information about all dogs that are not Shepherd mixes.
+  e. Display the id, age, weight, and breed of all dogs that are either over 60lbs or Great Danes.
+
+  a. SELECT name, gender, age
+  	 FROM dogs
+  	 WHERE breed LIKE '%Labrador%' OR '%labrador%';
+
+  b. SELECT id
+  	 FROM dogs
+  	 WHERE age < 1;
+
+  c. SELECT name, age
+  	 FROM dogs
+  	 WHERE gender = 'F' AND weight > 35;
+
+  d. SELECT id, age, weight, breed
+  	 FROM dogs
+  	 WHERE breed NOT LIKE '%Shepherd%' OR '%shepherd%';
+
+  e. SELECT id, age, weight, breed
+  	 FROM dogs
+  	 WHERE breed = 'Great Dane' OR 'great dane' OR weight > 60;
+
+4.
+  a. SELECT name, adoption_date FROM cats;
+  b. SELECT name, age FROM cats;
+
+  a. 
+  	Mushi 2016-03-22
+  	Seashell NULL
+  	Azul 2016-04-17
+  	Victoire 2016-09-01
+  	Nala NULL
+
+  b.
+    Mushi 1
+    Seashell 7
+    Azul 3
+    Victoire 7
+    Nala 1
+
+5.
+  a. Display all the information about all of the available cats.
+  b. Display the name and sex of all cats who are 7 years old.
+  c. Find all of the names of the cats, so you don’t choose duplicate names for new cats.
+
+  a.
+  	SELECT *
+  	FROM cats
+  	WHERE adoption_date = NULL;
+
+  b. 
+  	SELECT name, gender
+  	FROM cats
+  	WHERE age = 7;
+
+  c.
+  	SELECT name
+  	FROM cats;
+
+6. List each comparison operator and explain when you would use it. Include a real world example for each. 	  
+
+	Real world examples will be parameters for a dating app
+	< less than; WHERE age < 40;
+	> greater than; WHERE age > 21;
+	<= less than OR equal to; WHERE age <= 39;
+	>= greater than OR equal to; WHERE age >= 22;
+	!= inequality; WHERE name != 'Michael';
+	<> inequality, really either greater than OR less than, but not equal to; WHERE age <> 36;
+	= used to determine equality; WHERE name = 'Matthew';
+
+7.
+  a. SELECT name FROM cats WHERE gender = ‘F’;
+  b. SELECT name FROM cats WHERE age <> 3;
+  c. SELECT ID FROM cats WHERE name != ‘Mushi’ AND gender = ‘M’;
+
+  a. 
+     Seashell
+     Nala
+  b. 
+  	 Mushi
+  	 Seashell
+  	 Victoire
+  	 Nala
+  c.
+     3
+     4
