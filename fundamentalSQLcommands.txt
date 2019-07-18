@@ -1,0 +1,136 @@
+Use the commands above to complete the following tasks, and submit the SQL statements. Real-world examples must be distinct from those used in the text.
+
+1. List the commands for adding, updating, and deleting data.
+	ALTER - Used to add, delete, or modify columns in an existing table.
+	INSERT INTO/ADD - Used to add data.
+	UPDATE - used to update data.
+	DELETE/DROP COLUMN/DROP TABLE - to delete data.
+	
+
+2. Explain the structure for each type of command.
+	ALTER - after creating, have to use alter to update table.
+		EX. ALTER TABLE contacts ADD COLUMN name text;
+	INSERT INTO - after creation, populates table with values.
+		EX INSERT INTO contacts (name, number, email)
+	ADD - can be seen in first example
+	UPDATE - changes data already input
+		EX. UPDATE contacts SET number=352-555-5555 WHERE name=Amy
+	DELETE/DROP COLUMN/DROP TABLE - delete removes data, drop column removes an entire column, drop table deletes full table
+		EX. DELETE FROM contacts WHERE name=Amy;
+		EX. ALTER TABLE contacts DROP COLUMN email;
+		EX. DROP TABLE contacts;
+
+3. What are some of the data types that can be used in tables? Give a real-world example of each type.
+	Text - in my example table of contacts, examples would be Name and Email
+	Numbers - in my example table, example would be the number (phone number)
+	Date/Time - in my example table, could add birthday for example.
+
+4. Decide how to create a new table to hold a list of people invited to a wedding dinner. The table needs to have first and last names, whether they sent in their RSVP, the number of guests they are bringing, and the number of meals (1 for adults and 1/2 for children).
+
+Which data type would you use to store each of the following pieces of information?
+
+	First and last name. - TEXT - STRING
+	Whether they sent in their RSVP. - BOOLEAN 
+	Number of guests. - NUMBER/INTEGER
+	Number of meals. - NUMBER/FLOAT
+
+Write a command that creates the table to track the wedding dinner.
+	
+	CREATE TABLE weddingList(
+		firstName text,
+		lastName text,
+		RSVP boolean,
+		numberGuests integer,
+		numberMeals numeric(2, 1)
+		);
+
+Write a command that adds a column to track whether the guest sent a thank you card.
+	ALTER TABLE weddingList ADD COLUMN thankYouSent boolean;
+
+You have decided to move the data about the meals to another table, so write a command to remove the column storing the number meals from the wedding table.
+	ALTER TABLE weddingList DROP COLUMN numberMeals;
+
+The guests will need a place to sit at the reception, so write a command that adds a column for table number.
+	ALTER TABLE weddingList ADD COLUMN tableNumber integer;
+
+The wedding is over and we do not need to keep this information, so write a command that deletes the table numbers from the database.
+	ALTER TABLE weddingList DROP COLUMN tableNumber;
+
+5. Write a command to create a new table to hold the books in a library with the columns ISBN, title, author, genre, publishing date, number of copies, and available copies.
+
+	CREATE TABLE libraryBooks(
+		ISBN integer,
+		title text,
+		author text,
+		genre text,
+		publishingDate date,
+		numCopies integer,
+		copiesAvail integer
+		);
+
+Find three books and add their information to the table.
+	INSERT INTO libraryBooks (ISBN, title, author, genre, publishingDate, numCopies, copiesAvail)
+	VALUES
+	(9780747532743, 'Harry Potter and the Philosopher/'s Stone', 'J.K. Rowling', 'fantasy', 06/26/1997, 3, 2),
+	(9780747538486, 'Harry Potter and the Chamber of Secrets', 'J.K. Rowling', 'fantasy', 07/02/1998, 3, 3),
+	(9780545010221, 'Harry Potter and the Deathly Hallows', 'J.K. Rowling', 'fantasy', 06/21/2007, 4, 1);
+
+Someone has just checked out one of the books. Change the number of available copies to 1 fewer.
+	UPDATE libraryBooks SET copiesAvail= copiesAvail - 1 WHERE ISBN=9780545010221;
+
+Now one of the books has been added to the banned books list. Remove it from the table.
+	DELETE FROM libraryBooks WHERE ISBN=9780545010221;
+
+Write a command to make a new table to hold spacecrafts. Information should include id, name, year launched, country of origin, a brief description of the mission, orbiting body, if it is currently operating, and its approximate miles from Earth. In addition to the table creation, provide commands that perform the following operations:
+
+Add three non-Earth-orbiting satellites to the table.
+Remove one of the satellites from the table since it has just crashed into the planet.
+Edit another satellite because it is no longer operating and change the value to reflect that.
+
+	CREATE TABLE spacecraft(
+		id integer,
+		name text,
+		yearLaunched integer,
+		countryOfOrigin text,
+		missionDescription text,
+		orbitingBody text,
+		currentlyOperating boolean,
+		milesFromEarth integer
+		);
+
+	INSERT INTO spacecraft(id, name, yearLaunched, countryOfOrigin, missionDescription, orbitingBody, currentlyOperating, milesFromEarth)
+	VALUES
+		(1, 'Luna 10', 1966, 'Soviet Union', 'Collect information about the Moon', 'Moon', FALSE, 238855),
+		(2, 'Phobos 1', 1988, 'Soviet Union', 'Explore Mars and its moons, Phobos and Deimos', 'Mars', FALSE, 33900000 ),
+		(3, 'Phobos 2', 1988, 'Soviet Union', 'Gather data on Sun, Mars, and Phobos', 'Mars', FALSE, 33900000);
+
+	DELETE FROM spacecraft WHERE id=3;
+
+	UPDATE spacecraft SET currentlyOperating= FALSE WHERE id=1;
+
+Write a command to create a new table to hold the emails in your inbox. This table should include an id, the subject line, the sender, any additional recipients, the body of the email, the timestamp, whether or not you have read the email, and the id of the email chain it's in. Also provide commands that perform the following operations:
+
+Add three new emails to the inbox.
+You deleted one of the emails, so write a command to remove the row from the inbox table.
+You started reading an email but just heard a crash in another room. Mark the email as unread before investigating the crash, so you can come back and read it later.
+
+CREATE TABLE email(
+	id integer,
+	subject text,
+	sender text,
+	CC text,
+	body text,
+	timestamp timestamp,
+	read boolean,
+	chainID integer
+	);
+
+INSERT INTO email(id, subject, sender, CC, body, timestamp, read, chainID)
+VALUES
+ (1, 'Hey!', 'Cory', 'Tricia', 'Link for today www.fakelink.com/1234', '2019-07-18 08:29:53', TRUE, 1),
+ (2, 'Hey!', 'Tricia', 'Cory', 'Hey, so sorry, I/'m running 5 minutes late.', '2019-07-18 08:31:05', TRUE, 1),
+ (3, 'Hey!', 'Cory', 'Tricia', 'Thanks for the heads up, I will see you soon.', '2019-07-18 08:32:10', TRUE, 2);
+
+ DELETE FROM email WHERE id=1;
+
+ UPDATE email SET read=false WHERE id=3;
